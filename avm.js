@@ -4,6 +4,7 @@ const BASE_URL = 'https://en.avm.de/service/current-security-notifications/';
 const TR_COUNT_SELECTOR = '#c91069 > div > div > div > table > tbody > tr';
 const RELEASE_DATE = '#c91069 > div > div > div > table > tbody > tr:nth-child(INDEX1) > td:nth-child(1) > div.content-wrap > div > p > strong';
 const NOTICE = '#c91069 > div > div > div > table > tbody > tr:nth-child(INDEX1) > td:nth-child(2) > div.content-wrap > p';
+const NOTICE_DETAILS = '#c91069 > div > div > div > table > tbody > tr:nth-child(INDEX1) > td:nth-child(2) > div.content-wrap > div';
 const relevantDate = new Date("2021-05-10"); // All notifications with a Date gt relevantDate are selected
 
 const avm = {
@@ -35,10 +36,11 @@ const avm = {
       }, TR_COUNT_SELECTOR);
 
       for (let i = 1; i <= trLength; i++) {
-        var notifications = {};
+        var notification = {};
 
         let dateSelector = RELEASE_DATE.replace("INDEX1", i);
         let noticeSelector = NOTICE.replace("INDEX1", i);
+        let detailSelector = NOTICE_DETAILS.replace("INDEX1", i);
 
         let dateTdElement = await avm.page.evaluate((sel) => {
           let data = document.querySelector(sel);
@@ -48,14 +50,20 @@ const avm = {
           let data = document.querySelector(sel);
           return data? data.innerHTML: null;
         }, noticeSelector);
+        let detailsTdElement = await avm.page.evaluate((sel) => {
+          let data = document.querySelector(sel);
+          return data? data.innerHTML: null;
+        }, detailSelector);
 
         if (dateTdElement != null)
-          notifications.RealeaseDate = dateTdElement;
+          notification.RealeaseDate = dateTdElement;
         if (noticeTdElement != null)
-          notifications.Topic = noticeTdElement;
+          notification.Topic = noticeTdElement;
+        if (detailsTdElement != null)
+          notification.Details = detailsTdElement;
 
-        if (!isEmpty(notifications) && convertedDate(notifications.RealeaseDate) > relevantDate)
-          results.push(notifications);
+        if (!isEmpty(notification) && convertedDate(notification.RealeaseDate) > relevantDate)
+          results.push(notification);
       }
 
       return JSON.stringify(results); 
