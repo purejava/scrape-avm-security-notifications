@@ -15,7 +15,7 @@ Make sure to set headless to **true** in `avm.js` when deploying the bot to a se
 ```
 
 # Deployment
-On an Ubuntu server you need to:
+On an Ubuntu server 18.04 LTS you need to:
 ## Install required tools
 ```
 apt-get install nodejs npm
