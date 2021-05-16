@@ -1,0 +1,4 @@
+#!/bin/sh
+# cron script that checks for new notifications
+test -x /usr/local/sbin/scrape-avm-security-notifications/cron_email.pl || exit 0
+perl -e 'sleep int(rand(3600))' && /usr/local/sbin/scrape-avm-security-notifications/cron_email.pl
