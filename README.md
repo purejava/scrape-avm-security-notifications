@@ -1,4 +1,9 @@
 # Scrape AVM security notifications
+![AVM Bot](avm_bot.png)
+
+[![License](https://img.shields.io/github/license/purejava/scrape-avm-security-notifications.svg)](https://github.com/purejava/scrape-avm-security-notifications/blob/master/LICENSE)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=XVX9ZM7WE4ANL)
+
 This is a bot. It parses a list of AVM security notifications and notices, when new notifications appear on the list.
 
 # Platform
@@ -74,3 +79,11 @@ As Chrome is triggered by a cron job that runs as root, some additional configur
       headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
 ```
+
+# Donation
+If you like this project, you can give me a cup of coffee :)
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?hosted_button_id=XVX9ZM7WE4ANL)
+
+# Copyright
+Copyright (C) 2021 Ralph Plawetzki
