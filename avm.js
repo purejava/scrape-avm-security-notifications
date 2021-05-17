@@ -31,29 +31,18 @@ const avm = {
       await avm.page.goto(BASE_URL, { waitUntil: 'networkidle2'} );
 
       // Get size of the table to precess
-      let trLength = await avm.page.evaluate((sel) => {
-        return document.querySelectorAll(sel).length;
-      }, TR_COUNT_SELECTOR);
+      const trLength = await avm.page.$$eval(TR_COUNT_SELECTOR, (el) => el.length);
 
       for (let i = 1; i <= trLength; i++) {
-        var notification = {};
+        let notification = {};
 
         let dateSelector = RELEASE_DATE.replace("INDEX1", i);
         let noticeSelector = NOTICE.replace("INDEX1", i);
         let detailSelector = NOTICE_DETAILS.replace("INDEX1", i);
 
-        let dateTdElement = await avm.page.evaluate((sel) => {
-          let data = document.querySelector(sel);
-          return data? data.innerHTML: null;
-        }, dateSelector);
-        let noticeTdElement = await avm.page.evaluate((sel) => {
-          let data = document.querySelector(sel);
-          return data? data.innerHTML: null;
-        }, noticeSelector);
-        let detailsTdElement = await avm.page.evaluate((sel) => {
-          let data = document.querySelector(sel);
-          return data? data.innerHTML: null;
-        }, detailSelector);
+        let dateTdElement = await avm.page.$eval(dateSelector, (el) => el.innerHTML);
+        let noticeTdElement = await avm.page.$eval(noticeSelector, (el) => el.innerHTML);
+        let detailsTdElement = await avm.page.$eval(detailSelector, (el) => el.innerHTML);
 
         if (dateTdElement != null)
           notification.RealeaseDate = dateTdElement;
@@ -90,8 +79,8 @@ let isEmpty = obj => {
 }
 
 let convertedDate = date => {
-  var pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
-  var cDate = new Date(date.replace(pattern,'$3-$2-$1'))
+  let pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+  let cDate = new Date(date.replace(pattern,'$3-$2-$1'))
   return cDate;
 }
 
