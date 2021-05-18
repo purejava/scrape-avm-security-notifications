@@ -87,3 +87,5 @@ If you like this project, you can give me a cup of coffee :)
 
 # Copyright
 Copyright (C) 2021 Ralph Plawetzki
+
+The scrape-avm-security-notifications logo is borrowed from [GNOME Builder](https://wiki.gnome.org/Apps/Builder), that is designed by Christian Hergert. The logo is published under the [GNU General Public License (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.html).
