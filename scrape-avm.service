@@ -1,0 +1,9 @@
+[Unit]
+Description=parse AVM notifications
+After=network-online.target
+Wants=network-online.target
+OnFailure=status_email_user@%n.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/scrape-avm/timer-email.pl
