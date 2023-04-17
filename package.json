@@ -8,7 +8,7 @@
   "author": "Ralph Plawetzki",
   "license": "Apache-2.0",
   "dependencies": {
-    "puppeteer": "^2.1.0"
+    "puppeteer": "^19.9.1"
   },
   "devDependencies": {},
   "repository": {
